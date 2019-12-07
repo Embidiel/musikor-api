@@ -5,6 +5,8 @@ const connectDB = require('./config/db');
 
 dotenv.config({ path: `./config/config.env`});
 
+connectDB();
+
 // Route Files
 const admin = require('./routes/admin');
 const customer = require('./routes/admin');
