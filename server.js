@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 dotenv.config({ path: `./config/config.env` });
@@ -14,6 +15,9 @@ const user = require('./routes/user');
 const app = express();
 
 // Load routers
+
+
+app.use(errorHandler);
 
 // Dev logging
 if(process.env.NODE_ENV === 'development'){
