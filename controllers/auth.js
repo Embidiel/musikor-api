@@ -7,6 +7,7 @@ ROUTE   GET /api/v1/auth/register
 ACCESS  Public
 */
 exports.register = asyncHandler(async (req, res, next) => {
+    console.log(req.body);
     const { firstName, lastName, email, password, mobileNumber, role } = req.body;
 
     const user = await User.create({

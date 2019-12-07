@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const colors = require('colors');
-const errorHandler = require('./middleware/error');
+const errorHandler = require('./middlewares/error');
 const connectDB = require('./config/db');
 
 dotenv.config({ path: `./config/config.env` });
@@ -11,11 +11,13 @@ connectDB();
 
 // Route Files
 const user = require('./routes/user');
+const auth = require('./routes/auth');
 
 const app = express();
+app.use(express.json());
 
 // Load routers
-
+app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 
