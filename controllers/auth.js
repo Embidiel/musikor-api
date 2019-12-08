@@ -49,6 +49,20 @@ exports.login = asyncHandler(async (req, res, next) => {
     sendTokenResponse(user, 200, res);
 })
 
+/* 
+DESC    Get current logged user
+ROUTE   GET /api/v1/auth/me
+ACCESS  Private
+*/
+exports.getMe = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    
+    res.status(200).json({
+        success: true,
+        data: user
+    });
+});
+
 // Custom function to create token and then send cookie response.
 const sendTokenResponse = (user, statusCode, res) => {
     const token = user.getSignedJwtToken();
