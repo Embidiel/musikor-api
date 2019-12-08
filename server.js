@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const cookieParser = require('cookie-parser');
 const errorHandler = require('./middlewares/error');
 const connectDB = require('./config/db');
 
@@ -15,6 +16,7 @@ const auth = require('./routes/auth');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 // Load routers
 app.use('/api/v1/auth', auth);
