@@ -32,7 +32,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     // Accept query parameters, and then add $ at front.
     let queryStr = JSON.stringify(reqQuery);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-    console.log(`Query: `, queryStr);
+    console.log(`Query: `, reqQuery);
 
     query = Product.find(JSON.parse(queryStr));
 
