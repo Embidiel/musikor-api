@@ -22,12 +22,33 @@ ACCESS  Public
 exports.getProducts = asyncHandler(async (req, res, next) => {
     let query;
 
+    const reqQuery = { ...req.query };
+
+    const removeFields = ['select', 'sort'];
+
+    // Delete removable fields from request query.
+    removeFields.forEach(field => delete reqQuery[field]);
+
     // Accept query parameters, and then add $ at front.
-    let queryStr = JSON.stringify(req.query);
+    let queryStr = JSON.stringify(reqQuery);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
     console.log(`Query: `, queryStr);
-    
+
     query = Product.find(JSON.parse(queryStr));
+
+    // Select fields to return
+    if(req.query.select){
+        const fields = req.query.select.split(',').join(' ');
+        query = query.select(fields);
+    }
+
+    // Sort documents
+    if(req.query.sort){
+        const sortBy = req.query.select.split(',').join(' ');
+        query = query.select(fields);
+    } else {
+        query = query.sort('-createdAt');
+    }
 
     const products = await query;
 
