@@ -20,7 +20,17 @@ ROUTE   GET /api/v1/products/
 ACCESS  Public
 */
 exports.getProducts = asyncHandler(async (req, res, next) => {
-    const products = await Product.find();
+    let query;
+
+    // Accept query parameters, and then add $ at front.
+    let queryStr = JSON.stringify(req.query);
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    console.log(`Query: `, queryStr);
+    
+    query = Product.find(JSON.parse(queryStr));
+
+    const products = await query;
+
     res.status(200).json({
         success: true,
         count: products.length,
