@@ -7,7 +7,7 @@ DESC    Get artists
 ROUTE   GET /api/v1/artists/
 ACCESS  Public
 */
-exports.getArtist = asyncHandler(async (req, res, next) => {
+exports.getArtists = asyncHandler(async (req, res, next) => {
     let query;
 
     query = Artist.find();

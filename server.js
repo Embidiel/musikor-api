@@ -13,7 +13,8 @@ connectDB();
 // Route Files
 const user = require('./routes/user');
 const auth = require('./routes/auth');
-const products = require('./routes/products')
+const products = require('./routes/products');
+const artists = require('./routes/artists');
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(cookieParser());
 // Load routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/products', products);
+app.use('/api/v1/artists', artists);
 
 app.use(errorHandler);
 
