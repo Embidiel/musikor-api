@@ -33,9 +33,11 @@ const ProductSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    timestamps: true,
+    artist: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Artist',
+        required: true
     }
 });
 
