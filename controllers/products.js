@@ -17,7 +17,7 @@ exports.createProduct = asyncHandler(async (req, res, next) => {
 /* 
 DESC    Get all products
 ROUTE   GET /api/v1/products/
-        GET /api/v1/artists/:id/products
+        GET /api/v1/artists/:artistId/products
 ACCESS  Public
 */
 exports.getProducts = asyncHandler(async (req, res, next) => {
@@ -35,7 +35,12 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
     console.log(`Query: `, reqQuery);
 
-    query = Product.find(JSON.parse(queryStr));
+    // If artists id exists, find artists' product/s.
+    if(req.params.artistId) {
+        query = Product.find({ artist: req.params.artistId });
+    } else {
+        query = Product.find(JSON.parse(queryStr));
+    }
 
     // Select fields to return
     if(req.query.select){
@@ -46,7 +51,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     // Sort documents
     if(req.query.sort){
         const sortBy = req.query.select.split(',').join(' ');
-        query = query.select(fields);
+        query = query.select(sortBy);
     } else {
         query = query.sort('-createdAt');
     }
