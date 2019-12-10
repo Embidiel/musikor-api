@@ -17,6 +17,7 @@ exports.createProduct = asyncHandler(async (req, res, next) => {
 /* 
 DESC    Get all products
 ROUTE   GET /api/v1/products/
+        GET /api/v1/artists/:id/products
 ACCESS  Public
 */
 exports.getProducts = asyncHandler(async (req, res, next) => {
@@ -24,7 +25,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
 
     const reqQuery = { ...req.query };
 
-    const removeFields = ['select', 'sort'];
+    const removeFields = ['select', 'sort', 'paginate', 'limit'];
 
     // Delete removable fields from request query.
     removeFields.forEach(field => delete reqQuery[field]);
