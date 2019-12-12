@@ -33,13 +33,14 @@ const ProductSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    timestamps: true,
     artist: {
         type: mongoose.Schema.ObjectId,
         ref: 'Artist',
         required: true
     }
 });
+
+ProductSchema.set('timestamps', true); 
 
 ProductSchema.pre('save', function(next) {
     this.slug = slugify(this.name, { lower: true });

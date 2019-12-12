@@ -1,0 +1,32 @@
+[
+    {
+      "_id": "5d713995b721c3bb38c1f5d0",
+      "artist": "5d7a514b5d2c12c7449be046",
+      "name": "Purpose",
+      "description": "Purpose album of Taeyeon from Girl's Generation.",
+      "stock": "12",
+      "price": "15000",
+      "releaseDate": "11/21/2019",
+      "tracklist": ["Find Me", "Spark", "Gravity"]
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f5d1",
+        "artist": "5d7a514b5d2c12c7449be046",
+        "name": "Why",
+        "description": "Why album of Taeyeon from Girl's Generation (GG)",
+        "stock": "53",
+        "price": "1789",
+        "releaseDate": "08/13/2017",
+        "tracklist": ["Why", "U R", "Gemini"]
+      },
+      {
+        "_id": "5d713995b721c3bb38c1f5d2",
+        "artist": "5d7a514b5d2c12c7449be047",
+        "name": "Love Poem",
+        "description": "Love Poem album of Taeyeon from Girl's Generation (GG)",
+        "stock": "41",
+        "price": "7188",
+        "releaseDate": "12/13/2020"
+      }
+  ]
+  

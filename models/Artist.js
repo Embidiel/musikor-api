@@ -16,8 +16,9 @@ const ArtistSchema = new mongoose.Schema({
     },
     member: {
         type: [String]
-    },
-    timestamps: true
+    }
 });
+
+ArtistSchema.set('timestamps', true); 
 
 module.exports = mongoose.model('Artist', ArtistSchema);
