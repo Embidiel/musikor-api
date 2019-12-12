@@ -63,7 +63,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     const endIndex = page * limit;
     const total = await Product.countDocuments();
 
-    query = query.skip(skip).limit(limit);
+    query = query.skip(startIndex).limit(limit);
 
     const products = await query;
 
