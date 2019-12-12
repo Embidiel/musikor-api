@@ -137,11 +137,13 @@ ROUTE   DELETE /api/v1/products/:id
 ACCESS  Private
 */
 exports.deleteProduct = asyncHandler(async (req, res, next) => {
-    const product = await Product.findByIdAndDelete(req.params.id);
+    const product = await Product.findById(req.params.id);
 
     if(!product){
         return res.status(400).json({ success: false });
     }
+
+    product.remove();
     
     res.status(200).json({
         success: true,

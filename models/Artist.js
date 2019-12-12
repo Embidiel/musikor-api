@@ -21,4 +21,11 @@ const ArtistSchema = new mongoose.Schema({
 
 ArtistSchema.set('timestamps', true); 
 
+// Delete artist's products when the artist is deleted.
+ArtistSchema.pre('remove', async function (next) {
+    console.log(`Products being deleted from Artist: ${this._id}`)
+    await this.model('Product').deleteMany({ artist: this._id });
+    next();
+})
+
 module.exports = mongoose.model('Artist', ArtistSchema);
