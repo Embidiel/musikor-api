@@ -19,7 +19,18 @@ const ArtistSchema = new mongoose.Schema({
     }
 });
 
+// Enable virtuals.
+ArtistSchema.set('toObject', { virtuals: true });
+ArtistSchema.set('toJSON', { virtuals: true });
 ArtistSchema.set('timestamps', true); 
+
+// Reverse populate using virtuals
+ArtistSchema.virtual('product', {
+    ref: 'Product',
+    localField: '_id',
+    foreignField: 'artist',
+    justOne: false
+});
 
 // Delete artist's products when the artist is deleted.
 ArtistSchema.pre('remove', async function (next) {

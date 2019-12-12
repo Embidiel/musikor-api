@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { 
     getArtists,
+    getArtist,
     deleteArtist
 } = require('../controllers/artists');
 
@@ -18,6 +19,7 @@ router
 
 router
     .route('/:id')
+    .get(getArtist)
     .delete(deleteArtist);
 
 module.exports = router;

@@ -22,6 +22,27 @@ exports.getArtists = asyncHandler(async (req, res, next) => {
 });
 
 /* 
+DESC    Get single artist
+ROUTE   GET /api/v1/artists/:id
+ACCESS  Public
+*/
+exports.getArtist = asyncHandler(async (req, res, next) => {
+    const artist = await Artist.findById(req.params.id).populate({
+        path: 'product',
+        select: ''
+    });
+
+    if(!artist){
+        return next(new ErrorResponse(`No artist with the id of ${req.params.id} was found`))
+    }
+
+    res.status(200).json({
+        success: true,
+        data: artist
+    });
+});
+
+/* 
 DESC    Delete a single artist
 ROUTE   DELETE /api/v1/artists/:id
 ACCESS  Private
