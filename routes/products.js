@@ -6,7 +6,8 @@ const {
     getProduct,
     getProducts,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    productPhotoUpload
 } = require('../controllers/products');
 
 router
@@ -19,5 +20,9 @@ router
     .get(getProduct)
     .put(updateProduct)
     .delete(deleteProduct);
+
+router
+    .route('/:id/photo')
+    .put(productPhotoUpload);
 
 module.exports = router;
