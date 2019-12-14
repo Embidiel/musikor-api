@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middlewares/error');
+const fileupload = require('express-fileupload');
 const connectDB = require('./config/db');
 
 dotenv.config({ path: `./config/config.env` });
@@ -19,6 +20,7 @@ const artists = require('./routes/artists');
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(fileupload());
 
 // Load routers
 app.use('/api/v1/auth', auth);
