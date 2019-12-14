@@ -83,7 +83,18 @@ ROUTE   GET /api/v1/products/
 ACCESS  Public
 */
 exports.getProducts = asyncHandler(async (req, res, next) => {
-    res.status(200).json(res.advancedResults);  
+    if(req.params.artistId){
+        const products = await Product.find({ artist: req.params.artistId });
+
+        return res.status(200).json({
+            success: true,
+            count: products.length,
+            data: products
+        })
+    } else {
+        res.status(200).json(res.advancedResults);  
+    }
+        
 })
 
 /* 

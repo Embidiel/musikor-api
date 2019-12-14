@@ -7,6 +7,9 @@ const {
     deleteArtist
 } = require('../controllers/artists');
 
+const Artist = require('../models/Artist');
+const advancedResults = require('../middlewares/advancedResults');
+
 // Include other routers
 const productsRouter = require('./products');
 
@@ -15,7 +18,7 @@ router.use('/:artistId/products', productsRouter);
 
 router
     .route('/')
-    .get(getArtists);
+    .get(advancedResults(Artist), getArtists);
 
 router
     .route('/:id')

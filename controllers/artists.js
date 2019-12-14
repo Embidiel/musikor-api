@@ -8,17 +8,7 @@ ROUTE   GET /api/v1/artists/
 ACCESS  Public
 */
 exports.getArtists = asyncHandler(async (req, res, next) => {
-    let query;
-
-    query = Artist.find();
-
-    const artists = await query;
-
-    res.status(200).json({
-        success: true,
-        count: artists.length,
-        data: artists
-    });
+    res.status(200).json(res.advancedResults);
 });
 
 /* 
