@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
+const advancedResults = require('../middlewares/advancedResults');
+const Product = require('../models/Product');
 
 const { 
     createProduct,
@@ -12,7 +14,7 @@ const {
 
 router
     .route('/')
-    .get(getProducts)
+    .get(advancedResults(Product), getProducts)
     .post(createProduct);
 
 router
